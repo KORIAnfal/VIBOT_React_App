@@ -1,0 +1,264 @@
+@import url('./GoToChargingButton.css');
+@import url('./ModeCard.css');
+
+.manual-background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0a0a16;
+  z-index: -2;
+}
+
+.manual-plain-background {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 50%;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: bottom center;
+   opacity: 0.7;
+   z-index: -1;
+}
+
+.manual-container.layout-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr 220px;
+  gap: 20px;
+  min-height: 100vh;
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  align-items: start;
+}
+
+.manual-left-panel {
+   background-color: #1c1c33;
+   border-radius: 12px;
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   height: fit-content;
+}
+
+.middle-section {
+  margin: 0;
+  width: 100%;
+  max-width: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.manual-bot-info-section {
+  text-align: center;
+  width: 100%;
+   margin-bottom: 0;
+}
+
+.manual-bot-name {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.manual-status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.manual-status-text {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.manual-battery-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.manual-battery-text {
+  font-size: 15px;
+}
+
+.manual-right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 5%;
+  align-items: flex-end;
+}
+
+.manual-mode-cards-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 15px;
+  width: 100%;
+  max-width: 150px;
+}
+
+.manual-card.robot-view-card {
+  background-color: #1a1a2e;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 90%;
+  max-width: 700px;
+  aspect-ratio: 5 / 3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.robot-view-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 90%;
+  max-width: 700px;
+  flex-wrap: wrap;
+}
+
+.button-container button {
+  padding: 15px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  min-width: 140px;
+  text-align: center;
+  flex: 1;
+  border-radius: 20px;
+}
+
+.button-container button:hover {
+  opacity: 0.9;
+}
+
+.emergency-stop-button {
+  background-color: #FC6736;
+  color: white;
+  border: none;
+}
+
+@media (max-width: 1024px) {
+  .manual-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 20px 15px;
+    align-items: stretch;
+  }
+
+  .manual-left-panel,
+  .middle-section,
+  .manual-right-panel {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+   .manual-left-panel {
+       padding: 20px;
+       gap: 20px;
+       height: fit-content;
+   }
+
+   .middle-section {
+      gap: 30px;
+   }
+
+  .manual-card.robot-view-card {
+     width: 95%;
+     max-width: 650px;
+     aspect-ratio: 16 / 9;
+  }
+
+  .button-container {
+      width: 95%;
+      max-width: 650px;
+  }
+
+   .button-container button {
+       padding: 12px 18px;
+       font-size: 0.95rem;
+       min-width: 130px;
+   }
+
+   .manual-right-panel {
+        gap: 15px;
+        padding: 0;
+        align-items: center;
+   }
+
+    .manual-mode-cards-list {
+        gap: 10px;
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 600px) {
+   .manual-container {
+      gap: 20px;
+      padding: 15px 10px;
+   }
+
+   .manual-left-panel {
+       padding: 15px;
+       gap: 15px;
+   }
+
+   .middle-section {
+      gap: 25px;
+   }
+
+  .manual-card.robot-view-card {
+    width: 100%;
+    max-width: unset;
+    aspect-ratio: 4 / 3;
+    border-radius: 15px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: unset;
+  }
+
+  .button-container button {
+    padding: 14px 20px;
+    font-size: 1rem;
+    flex: unset;
+    min-width: unset;
+    width: 85%;
+    border-radius: 15px;
+  }
+
+    .manual-right-panel {
+        gap: 10px;
+        padding: 0;
+        align-items: center;
+   }
+
+   .manual-mode-cards-list {
+       gap: 8px;
+       max-width: 180px;
+   }
+}

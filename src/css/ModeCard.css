@@ -1,0 +1,134 @@
+
+.mode-card {
+  background-color: #1c1c33;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  aspect-ratio: 1 / 1; 
+  text-decoration: none; 
+  color: inherit; 
+  box-sizing: border-box; 
+}
+
+.mode-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.mode-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.mode-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block; 
+}
+
+.mode-title {
+  font-weight: 500;
+  text-align: center;
+  
+}
+
+
+.mode-card--small {
+  padding: 10px; /* Make the padding even smaller */
+}
+
+.mode-icon--small {
+  width: 30px;  
+  height: 30px; 
+  margin-bottom: 5px; 
+}
+
+.mode-title--small {
+  font-size: 12px; 
+}
+
+.mode-card--medium {
+  padding: 20px;
+}
+.mode-icon--medium {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+}
+.mode-title--medium {
+  font-size: 13px;
+}
+
+/* Large Size */
+.mode-card--large {
+  padding: 30px;
+}
+.mode-icon--large {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+.mode-title--large {
+  font-size: 18px;
+}
+
+
+@media (max-width: 768px) { 
+   .mode-card--medium {
+       padding: 18px;
+   }
+   .mode-icon--medium {
+       width: 50px;
+       height: 50px;
+       margin-bottom: 12px;
+   }
+   .mode-title--medium {
+       font-size: 15px;
+   }
+
+   /* Example: Make large cards look like medium on tablets */
+    .mode-card--large {
+        padding: 20px;
+    }
+    .mode-icon--large {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    .mode-title--large {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) { /* Adjustments for smaller Phones */
+   /* Example: Make medium cards look like small on phones */
+   .mode-card--medium {
+       padding: 15px;
+   }
+   .mode-icon--medium {
+       width: 40px;
+       height: 40px;
+       margin-bottom: 10px;
+   }
+   .mode-title--medium {
+       font-size: 14px;
+   }
+
+    .mode-card--large {
+        padding: 15px;
+    }
+    .mode-icon--large {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    .mode-title--large {
+        font-size: 14px;
+    }
+}
