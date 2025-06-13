@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // Need useNavigate, useLocation
-import "../css/ManualControlMode.css"; // Import main CSS for layout and common styles
+import { useNavigate, useLocation } from "react-router-dom"; 
+import "../css/ManualControlMode.css"; 
 import "../css/ModeCard.css";
 import "../css/GoToChargingButton.css";
-import "../css/TrackingMode.css";
+
 
 import Header from "../components/Header.tsx";
 import RightPanel from "../components/RightPanel.tsx";
@@ -16,10 +16,9 @@ import adminTasksIcon from "../assets/images/super_admin_tasks.png";
 
 const TrackingMode = () => {
     const navigate = useNavigate();
-    const location = useLocation(); // Kept 'location' as is in your provided code, assuming ESLint is handled
-
-    const [batteryLevel, setBatteryLevel] = useState(70); // Example initial level
-    const [status, setStatus] = useState("IDLE"); // Example initial status
+    const location = useLocation(); 
+    const [batteryLevel, setBatteryLevel] = useState(70); 
+    const [status, setStatus] = useState("IDLE"); 
 
     const modeCardsData = [
       { id: "manual", icon: manualControlIcon, title: "Manual Control", path: "/manual-control" },
@@ -31,15 +30,15 @@ const TrackingMode = () => {
     useEffect(() => {
       const batteryInterval = setInterval(() => {
         setBatteryLevel((prevLevel) => {
-          const newLevel = prevLevel + (Math.random() * 2 - 1); // Fluctuate by +/- 1
-          return Math.min(Math.max(Math.round(newLevel), 0), 100); // Keep between 0-100 and round
+          const newLevel = prevLevel + (Math.random() * 2 - 1); 
+          return Math.min(Math.max(Math.round(newLevel), 0), 100); 
         });
-      }, 35000); // Update slightly less often than manual page example
+      }, 35000); 
 
-      return () => clearInterval(batteryInterval); // Clean up interval
+      return () => clearInterval(batteryInterval); 
     }, []);
 
-    // Set body position for background (Copy from ManualControlPage)
+
     useEffect(() => {
       document.body.style.position = "relative";
       return () => { document.body.style.position = ""; };
@@ -84,17 +83,17 @@ const TrackingMode = () => {
 
            <div className="manual-container layout-grid">
 
-               {/* --- Empty Left Panel --- */}
+
                <div className="manual-left-panel">
                   
                </div>
 
-               {/* --- Middle Section (Modify the button) --- */}
+               
                <div className="middle-section">
 
                    <Header batteryLevel={batteryLevel} status={status} />
 
-                   {/* Robot View Card */}
+            
                    <div className="manual-card robot-view-card">
                        <img
                            src={warehouseImage}
@@ -103,12 +102,12 @@ const TrackingMode = () => {
                        />
                    </div>
 
-                   {/* Action Buttons */}
+                  
                    <div className="button-container">
                        <button className="emergency-stop-button" onClick={handleDisableTracking}> 
                            Disable Tracking 
                        </button>
-                       <button className="switch-mode-button" onClick={handleSwitchToAutoMode}> 
+                       <button className="charging-button" onClick={handleSwitchToAutoMode}> 
                            Switch To Auto Mode
                        </button>
                    </div>

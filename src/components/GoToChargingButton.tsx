@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/GoToChargingButton.css'; // We will create this CSS file next
+import '../css/GoToChargingButton.css'; 
 
 interface GoToChargingButtonProps {
-  onClick: () => void; // Function to call when the button is clicked
+  onClick: () => void; 
 }
 
 const GoToChargingButton: React.FC<GoToChargingButtonProps> = ({ onClick }) => {

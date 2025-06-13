@@ -1,7 +1,7 @@
 import React from 'react';
-import GoToChargingButton from './GoToChargingButton.tsx'; // Adjust path if needed
-import ModeCard from './ModeCard.tsx'; // Adjust path if needed
-import '../css/ManualControlMode.css'; // Import main CSS for styling consistency
+import GoToChargingButton from './GoToChargingButton.tsx'; 
+import ModeCard from './ModeCard.tsx'; 
+import '../css/ManualControlMode.css';
 
 
 interface ModeCardData {
@@ -12,11 +12,11 @@ interface ModeCardData {
 }
 
 interface RightPanelProps {
-  // Props needed for this component
-  onGoToCharging: () => void; // Function to call when Go To Charging is clicked
-  onModeSelect: (path: string) => void; // Function to call when a Mode Card is clicked
-  modeCardsData: ModeCardData[]; // Array of data for mode cards
-  activePath: string; // The currently active route path for highlighting
+
+  onGoToCharging: () => void; 
+  onModeSelect: (path: string) => void; 
+  modeCardsData: ModeCardData[]; 
+  activePath: string; 
 }
 
 const RightPanel: React.FC<RightPanelProps> = ({
@@ -37,9 +37,9 @@ const RightPanel: React.FC<RightPanelProps> = ({
             key={card.id}
             icon={card.icon}
             title={card.title}
-            onClick={() => onModeSelect(card.path)} // Use the prop function
-            size="small" // Assuming size prop is supported by ModeCard
-            isActive={activePath === card.path} // Pass active state based on prop
+            onClick={() => onModeSelect(card.path)} 
+            size="small" 
+            isActive={activePath === card.path} 
           />
         ))}
       </div>

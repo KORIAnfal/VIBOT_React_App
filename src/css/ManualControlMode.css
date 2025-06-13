@@ -319,10 +319,6 @@
   color: white;
 }
 
-.charging-button { /* Consider renaming this to better reflect "Switch Mode" */
-   background-color: #3a3a52;
-   color: white;
-}
 
 .manual-left-panel > div:last-child {
     border-bottom: none !important; 

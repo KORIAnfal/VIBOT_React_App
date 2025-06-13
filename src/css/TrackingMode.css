@@ -1,1 +1,12 @@
-@import url('./ManualControlMode.css');
+.button-container .charging-button {
+  color: white;
+  background-color: rgba(24, 25, 41, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease; 
+
+}

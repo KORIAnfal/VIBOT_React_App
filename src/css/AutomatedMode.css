@@ -1,5 +1,7 @@
+@import url('./ManualControlMode.css');
+@import url('./GoToChargingButton.css');
 
-.button-container .charging-button, .charging-button  {
+.automated-mode-page .middle-section .button-container .charging-button {
   color: white;
   background-color: rgba(24, 25, 41, 0.5);
   border: 0.1px solid rgba(255, 255, 255, 0.5);
@@ -9,10 +11,5 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease; 
-  
-  
-}
 
-.charging-button:hover {
-  background-color: rgba(24, 25, 41, 3);
 }

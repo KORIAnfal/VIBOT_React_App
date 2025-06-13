@@ -1,4 +1,3 @@
-/* src/css/AutomatedMode.css */
 
 @import url('./ManualControlMode.css');
 
@@ -139,9 +138,9 @@
      }
 
      .automated-mode-page .middle-section .checklist-items .task-icon {
-         width: 18px; /* Smaller icon size for mobile */
+         width: 18px; 
          height: 18px;
-         margin-right: 8px; /* Adjust margin */
+         margin-right: 8px; 
      }
-     /* --- End responsive styles --- */
+
 }

@@ -146,11 +146,9 @@ const AdminTaskPage = () => {
                  if (zone.id === clickedId) {
                      let newStatus = 'unchecked'; // Default to unchecked
                      if (zone.status === 'unchecked') {
-                         newStatus = 'checked'; // If unchecked, make it checked
+                         newStatus = 'checked'; 
                      }
-                     // If it was already 'checked', it will become 'unchecked' (the default)
-                     // If 'warning' was possible, you'd add: else if (zone.status === 'checked') { newStatus = 'warning'; } etc.
-
+                     
                      return { ...zone, status: newStatus };
                  }
                  return zone; // Return unchanged for other zones
@@ -159,11 +157,7 @@ const AdminTaskPage = () => {
         // TODO: Optionally send status update to ROS or backend
         console.log(`Zone ${clickedId} status toggled`);
     }, []); // Dependencies: setZones (stable)
-    // --- END MODIFY ---
-
-
-    // --- REMOVED: handleSwitchToAutoMode as it's not in the Automated Mode image/flow ---
-    // const handleSwitchToAutoMode = useCallback(() => { ... }, [navigate]);
+   
 
 
     return (
@@ -177,8 +171,7 @@ const AdminTaskPage = () => {
 
                {/* --- Left Panel (Empty or specific Automated Mode controls) --- */}
                <div className="manual-left-panel">
-                   {/* Content specific to Automated Mode could go here */}
-                   {/* For now, leave it empty as per image */}
+
                </div>
                {/* --- END Empty Left Panel --- */}
 
@@ -197,10 +190,6 @@ const AdminTaskPage = () => {
                        </div>
                    </div>
 
-                   {/* --- MODIFY: Zone List Container (Make it scrollable) --- */}
-                   {/* This is the card itself containing the list items */}
-                   {/* Add a class like 'scrollable-list' or directly add styles in CSS for this class */}
-                   {/* The existing classes manual-card and checklist-items are already here */}
                    <div className="manual-card checklist-items scrollable-list"> {/* ADD scrollable-list class */}
                        {/* List items */}
                        {zones.map(zone => (
@@ -219,17 +208,14 @@ const AdminTaskPage = () => {
                            </div>
                        ))}
                    </div>
-                   {/* --- END MODIFY: Zone List --- */}
-
-
-                   {/* Emergency Stop Button below the list */}
+ 
                    <div className="button-container"> {/* Use button-container for spacing */}
                        <button className="emergency-stop-button" onClick={handleEmergencyStop}> {/* Use the dedicated handler */}
                            Emergency Stop {/* Keep the text as per image */}
                        </button>
-                       {/* REMOVED: Switch to Auto Mode button based on Automated Mode image */}
+
                    </div>
-                   {/* --- END Middle Section Buttons --- */}
+
 
 
                </div>
