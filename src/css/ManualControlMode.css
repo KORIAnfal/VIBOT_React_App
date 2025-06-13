@@ -4,13 +4,13 @@
 
 :root {
     --color-dark-bg-1: #04050F;
-    --color-dark-bg-2: #0F1336; /* Used for panel backgrounds */
-    --color-card-bg: #3a3a52; /* Used for checklist/joystick cards, switch mode button */
-    --color-robot-view-card-bg: #1a1a2e; /* Used for robot view card */
-    --color-accent-blue-1: #5126E6; /* Used for speed slider fill */
-    --color-accent-blue-2: #401EBC; /* Potential alternative accent */
-    --color-light-text: #E1EBF9; /* Used for most text and icons */
-    --color-emergency-red: #FC6736; /* Used for emergency stop button */
+    --color-dark-bg-2: #0F1336;
+    --color-card-bg: #3a3a52; 
+    --color-robot-view-card-bg: #1a1a2e; 
+    --color-accent-blue-1: #5126E6; 
+    --color-accent-blue-2: #401EBC; 
+    --color-light-text: #E1EBF9; 
+    --color-emergency-red: #FC6736; 
 }
 
 .manual-background-overlay {
@@ -52,12 +52,12 @@
 }
 
 .manual-left-panel {
-   background-color: #1c1c33;
+   background-color: none;
    border-radius: 12px;
    padding: 20px; /* Keep padding */
    display: flex;
    flex-direction: column;
-   gap: 20px; /* Keep gap */
+   gap: 80px; /* Keep gap */
    height: fit-content;
    color: white; /* Ensure text inside is visible */
 }
@@ -73,15 +73,15 @@
 .manual-checklist-block {
    display: flex;
    flex-direction: column;
-   width: 90%; /* Control the block width */
-   max-width: 200px; /* Set max width similar to image */
-   margin: 0 auto; /* Center the block horizontally */
-   /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */ /* Remove block border */
-   padding-bottom: 0; /* Remove block padding */
+   width: 120%; 
+   max-width: 150%; 
+   margin: 0 auto; 
+   padding-bottom: 0; 
 }
 
 .manual-card.checklist-items {
-   width: 100%; /* Ensure the card fills the block */
+   width: 100%;
+   height: 100%;
    background-color: #3a3a52; /* Card background from image */
    border-radius: 8px; /* Card border radius */
    padding: 10px 15px; /* Padding inside the card */
@@ -99,6 +99,7 @@
   padding: 8px 0; /* Padding for items */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator BETWEEN items */
 }
+
 .checklist-items .checklist-item:last-child {
     border-bottom: none; /* No border on last item */
 }
@@ -109,7 +110,7 @@
     margin-right: 10px;
 }
 .checklist-items .task-text {
-    font-size: 14px; /* Adjust text size */
+    font-size: 18px; /* Adjust text size */
     flex-grow: 1;
 }
 
@@ -117,24 +118,22 @@
 
 
 .manual-joystick-block {
-    display: flex; 
-    flex-direction: column;
-    gap: 20px;
-    width: 100%; /* Allow block to take full panel width */
-    max-width: 250px; /* Adjust max width for the whole joystick area */
+
+    gap: 90%; 
+    color: #434560 ;
     margin: 0 auto; /* Center the block */
-    margin-top: 50%; /* Space above joystick */
-    align-items: center; /* Center the grid/circle horizontally */
-    justify-content: center; /* Center the grid/circle vertically if block has fixed height */
+    margin-top: 45%;
+
+
 }
 
 .joystick-grid { 
-    display: block; /* Change from grid */
-    position: relative; /* Allow absolute positioning of children */
-
-    width: 220px; /* Size for the large outer circle */
-    height: 220px;
+    display: grid; 
+    position: relative; 
+    width: 200px; 
+    height: 200px;
     border-radius: 50%;
+    margin-left: 7%;
     background-color: #181929; /* Use color from palette / design */
     border: 0.2px solid rgba(255, 255, 255, 0.1); /* Light border as in image */
 
@@ -152,8 +151,8 @@
     color: #E1EBF9; /* Light text/icon color */
     transition: background-color 0.2s ease, opacity 0.2s ease;
     padding: 0;
-    width: 55px; /* Size of directional buttons */
-    height: 55px;
+    width: 40px; 
+    height: 40px;
     z-index: 2; 
 }
 
@@ -165,17 +164,17 @@
 }
 
 .joystick-button svg {
-     font-size: 1.2rem; 
+     font-size: 1.5rem; 
 }
 
-.joystick-button.up    { top: calc(50% - 80px); left: 50%; transform: translate(-50%, -50%); }
-.joystick-button.down  { bottom: calc(50% - 80px); left: 50%; transform: translate(-50%, 50%); } /* Adjusted transform */
-.joystick-button.left  { left: calc(50% - 80px); top: 50%; transform: translate(-50%, -50%); }
-.joystick-button.right { right: calc(50% - 80px); top: 50%; transform: translate(50%, -50%); } /* Adjusted transform */
+.joystick-button.up    { top: calc(50% - 70px); left: 50%; transform: translate(-50%, -50%); }
+.joystick-button.down  { bottom: calc(50% - 70px); left: 50%; transform: translate(-50%, 50%); } /* Adjusted transform */
+.joystick-button.left  { left: calc(50% - 70px); top: 50%; transform: translate(-50%, -50%); }
+.joystick-button.right { right: calc(50% - 70px); top: 50%; transform: translate(50%, -50%); } /* Adjusted transform */
 
 
 .joystick-button.center {
-    position: absolute;
+
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); 
@@ -186,21 +185,32 @@
 }
 /* Styling for the small white circle/dot inside the center button */
 .joystick-button.center::after {
-    content: ''; /* Create the pseudo-element */
-    position: absolute;
+ 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); /* Center the dot */
-    width: 15px; /* Size of the white dot */
-    height: 15px;
-    border-radius: 50%;
-    background-color: #E1EBF9; /* White color */
+    width: 30px; /* Size of the white dot */
+    height: 30px;
+
+}
+
+/* In your src/css/ManualControlMode.css file, find and replace/add these rules */
+
+/* Style for the speed control section wrapper */
+.speed-control {
+
+    width: 100%;
+    max-width: 200px; 
+    margin: 30px auto 0 auto; 
+
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    gap: 15px; 
 }
 
 
 
-
-/* --- Other sections (Mostly unchanged) --- */
 .middle-section {
   margin: 0;
   width: 100%;
@@ -265,10 +275,10 @@
   background-color: #1a1a2e;
   border-radius: 20px;
   overflow: hidden;
-  width: 90%;
-  max-width: 700px;
+  width: 100%;
+  max-width: 900px;
   aspect-ratio: 5 / 3;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
 }
 
 .robot-view-image {
@@ -346,7 +356,7 @@
 
    .manual-checklist-block,
    .manual-joystick-block {
-       width: 100%; /* Allow to take full width of max-width 700px panel */
+       width: 100%; 
        max-width: 250px; /* Keep compact even on larger tablets */
        margin: 0 auto; /* Keep centered */
    }

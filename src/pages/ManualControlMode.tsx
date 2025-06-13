@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from "react"; // useCallback is necessary for the new handlers
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef, useCallback } from "react"; 
+import { useNavigate, useLocation  } from "react-router-dom";
 import "../css/ManualControlMode.css";
 import "../css/ModeCard.css";
 import "../css/GoToChargingButton.css";
@@ -11,8 +11,7 @@ import {
   FaCircle,
 } from "react-icons/fa";
 import Header from "../components/Header.tsx";
-import ModeCard from "../components/ModeCard.tsx";
-import GoToChargingButton from "../components/GoToChargingButton.tsx";
+import RightPanel from "../components/RightPanel.tsx"; 
 
 import warehouseImage from "../assets/images/wh.png";
 import taskCheckedIcon from "../assets/icons/checked.svg";
@@ -53,9 +52,10 @@ const speedTopic = new ROSLIB.Topic({
 });
 
 
-const ManualControlPage = () => {
+const ManualControlMode = () => {
   const navigate = useNavigate();
-  // --- State and Refs (Group state and refs at the top) ---
+  const currentLocation = useLocation();
+
   const [speed, setSpeed] = useState(50);
   const [batteryLevel, setBatteryLevel] = useState(85);
   const [status, setStatus] = useState("IDLE");
@@ -63,8 +63,8 @@ const ManualControlPage = () => {
   const speedSliderRef = useRef<HTMLInputElement>(null);
 
   const [checklistTasks, setChecklistTasks] = useState([
-    { id: 1, text: "Task 01", status: "unchecked" },
-    { id: 2, text: "Task 02", status: "unchecked" },
+    { id: 1, text: "very very very long task text", status: "unchecked" },
+    { id: 2, text: "very very very very very very very very long task text", status: "unchecked" },
     { id: 3, text: "Task 03", status: "unchecked" },
     { id: 4, text: "Task 04", status: "unchecked" },
     { id: 5, text: "Task 05", status: "unchecked" },
@@ -96,9 +96,6 @@ const ManualControlPage = () => {
   ];
 
 
-  // --- Callback Functions (Declare these before useEffects if effects depend on them) ---
-
-  // NEW: Modified handleJoystickControl to accept linear/angular velocities
   const handleJoystickControl = useCallback((linear_x: number, angular_z: number) => {
       if (!ros.isConnected) {
           // console.warn("ROSBridge not connected. Command not sent.");
@@ -112,7 +109,7 @@ const ManualControlPage = () => {
   }, []); // No dependencies needed for the function itself
 
 
-  // NEW: Drag Event Handlers using useCallback
+  
   // Declare handleDragging and handleDragEnd before handleDragStart because handleDragStart uses them
   const handleDragging = useCallback((e: MouseEvent | TouchEvent) => {
       if (!isDragging.current || !joystickAreaRef.current || radius.current <= 0) {
@@ -182,13 +179,9 @@ const ManualControlPage = () => {
            const thumbRadius = 30; // Half the thumbstick size
            radius.current = (rect.width / 2) - thumbRadius;
        }
-       // Process the initial click/touch position to potentially move the thumbstick immediately
-       // This needs a MouseEvent/TouchEvent type, so we might need a cast or adjust types
-       // For simplicity, let's process the initial position calculation in handleDragging
-       // Call handleDragging immediately after adding listeners
-       handleDragging(e as any); // Cast needed for type compatibility with MouseEvent | TouchEvent parameter
-
-       e.preventDefault(); // Prevent default browser behavior (text selection, scrolling)
+       
+       handleDragging(e as any); 
+       e.preventDefault();
 
    }, [handleDragging, handleDragEnd]); // Dependencies on other drag handlers
 
@@ -246,14 +239,14 @@ const ManualControlPage = () => {
   // Handle Mode Card selection (Convert to useCallback)
   const handleModeSelection = useCallback((path: string) => {
     console.log(`Switching to mode: ${path}`);
-    // window.location.pathname is a global property, doesn't need dependency
-    if (window.location.pathname === path) {
+    
+    if (currentLocation.pathname === path) { // Use the variable from useLocation
         console.log(`Already on ${path}`);
         return;
     }
-     // TODO: Add API call or ROS command to switch mode BEFORE navigating
+    
      navigate(path);
-  }, [navigate]); // Depends on navigate
+  }, [navigate]); 
 
 
   // Handle Go To Charging button click (Convert to useCallback)
@@ -262,9 +255,6 @@ const ManualControlPage = () => {
     // TODO: Add API call or ROS command
   }, []); // No external dependencies
 
-
-  // Function to determine task icon based on status (Convert to useCallback - optional but good practice)
-  // This is a pure function, so dependencies are []
   const getTaskIcon = useCallback((status: "checked" | "warning" | "unchecked") => {
     switch (status) {
       case "checked": return taskCheckedIcon;
@@ -272,14 +262,7 @@ const ManualControlPage = () => {
       case "unchecked": return taskUncheckedIcon;
       default: return taskUncheckedIcon;
     }
-  }, []); // No dependencies
-
-  // --- End Callback Functions ---
-
-
-  // --- Effects (Group these after callbacks if they depend on them) ---
-
-   // NEW: Effect for continuous ROS command publishing
+  }, []); 
     useEffect(() => {
         let publishInterval: NodeJS.Timeout | null = null;
         const publishRate = 50; // milliseconds (e.g., 20 Hz)
@@ -287,8 +270,7 @@ const ManualControlPage = () => {
         const startPublishing = () => {
             if (publishInterval === null) {
                 publishInterval = setInterval(() => {
-                    // Calculate command based on current thumbstick position
-                    // Access state/refs directly or via dependencies
+                    
                     const max_speed_factor = speed / 100.0;
                     const linear_x_cmd = -thumbstickPosition.y / radius.current * max_speed_factor * 0.5;
                     const angular_z_cmd = -thumbstickPosition.x / radius.current * max_speed_factor * 0.8;
@@ -308,23 +290,19 @@ const ManualControlPage = () => {
             }
         };
 
-        // Only publish when dragging is active
         if (isDragging.current) {
              startPublishing();
         } else {
              stopPublishing();
-             // Final stop command sent in handleDragEnd
+
         }
 
         return () => {
-            stopPublishing(); // Clean up interval on component unmount or when isDragging becomes false
+            stopPublishing(); 
         };
-    }, [isDragging.current, thumbstickPosition, speed, handleJoystickControl]); // Depend on state/refs/callbacks used inside
+    }, [isDragging.current, thumbstickPosition, speed, handleJoystickControl]); 
 
-  // --- End Effects ---
-
-
-  // --- Return JSX (This part stays at the very end) ---
+ 
   return (
     <>
       {/* Background elements */}
@@ -358,15 +336,15 @@ const ManualControlPage = () => {
           </div>
 
           {/* --- Joystick Control Section --- */}
-          <div className="manual-joystick-block">
-            {/* This div is the large outer circle area. Attach ref and drag start listeners */}
+          <div >
+            
             <div
                 className="joystick-grid"
                 ref={joystickAreaRef}
                 onMouseDown={handleDragStart}
                 onTouchStart={handleDragStart}
             >
-              {/* Directional buttons are ONLY visual indicators now. Removed onClick. */}
+
               <button
                 className="joystick-button up"
                 aria-label="Move Up"
@@ -380,18 +358,17 @@ const ManualControlPage = () => {
                 <FaChevronLeft />
               </button>
 
-              {/* --- Draggable Thumbstick Element --- */}
-              {/* Position dynamically based on thumbstickPosition state */}
               <div
-                 className="joystick-thumb"
+                
+                 className="manual-joystick-block"
                  style={{
                     transform: `translate(${thumbstickPosition.x}px, ${thumbstickPosition.y}px)`,
                  }}
               >
                   {/* The white dot icon inside the thumbstick */}
-                  <FaCircle className="joystick-thumb-dot" />
+                  <FaCircle  />
               </div>
-               {/* --- END Draggable Thumbstick --- */}
+
 
               <button
                 className="joystick-button right"
@@ -407,21 +384,19 @@ const ManualControlPage = () => {
               </button>
             </div>
           </div>
-          {/* --- END Joystick Control Section --- */}
 
 
           {/* Speed Slider Section */}
           <div className="speed-control">
-            <span>Speed</span>
+            <span >Speed</span>
             <input
               type="range"
               min="0"
               max="100"
               value={speed}
-              onChange={handleSpeedChange} // This now calls the useCallback version
-              className="speed-slider"
+              onChange={handleSpeedChange} 
               aria-label={`Speed: ${speed}%`}
-              ref={speedSliderRef} // Attach the ref
+              ref={speedSliderRef}
             />
           </div>
 
@@ -456,24 +431,15 @@ const ManualControlPage = () => {
         </div>
 
         {/* Right Panel */}
-        <div className="manual-right-panel">
-          <GoToChargingButton onClick={handleGoToCharging} /> {/* This now calls the useCallback version */}
-          <div className="manual-mode-cards-list">
-            {modeCardsManualPage.map((card) => (
-              <ModeCard
-                key={card.id}
-                icon={card.icon}
-                title={card.title}
-                onClick={() => handleModeSelection(card.path)} // This now calls the useCallback version
-                size="small"
-                isActive={window.location.pathname === card.path}
-              />
-            ))}
-          </div>
-        </div>
+         <RightPanel
+           onGoToCharging={handleGoToCharging} 
+           onModeSelect={handleModeSelection} 
+           modeCardsData={modeCardsManualPage} 
+           activePath={currentLocation.pathname} 
+        />
       </div>
     </>
   );
 };
 
-export default ManualControlPage;
+export default ManualControlMode;
