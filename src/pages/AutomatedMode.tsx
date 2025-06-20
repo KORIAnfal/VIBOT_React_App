@@ -51,14 +51,13 @@ const AutomatedModePage = () => {
 
      
     const handleOnePointMission = useCallback(() => {
-        console.log("One-Point Mission button clicked!");
+        navigate('/automated-mode/one-point-mission');
         
     }, []); 
 
    
     const handleMultiPointMission = useCallback(() => {
-        console.log("Multi-Point Mission button clicked!");
-        
+        navigate('/automated-mode/multi-point-mission');
     }, []); 
 
     const handleGoToCharging = useCallback(() => {

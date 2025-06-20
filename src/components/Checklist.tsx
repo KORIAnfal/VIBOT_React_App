@@ -11,8 +11,8 @@ interface Task {
 
 interface ChecklistProps {
   tasks: Task[];
-  onTaskClick?: (taskId: string) => void; // Optional handler if tasks are interactive
-  icons: { // Map icon types to actual image paths
+  onTaskClick?: (taskId: string) => void; 
+  icons: { 
     checked: string;
     unchecked: string;
     warning: string;

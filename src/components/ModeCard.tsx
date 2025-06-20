@@ -1,31 +1,38 @@
-// src/components/ModeCard.tsx
 import React from 'react';
-import '../css/ModeCard.css'; // Import the new CSS file for the component
+import '../css/ModeCard.css'; 
 
-// Define the possible sizes for the card
-type ModeCardSize = 'small' | 'medium' | 'large'; // You can define more if needed
+
+type ModeCardSize = 'small' | 'medium' | 'large'; 
 
 interface ModeCardProps {
-  icon: string; // Path or URL to the icon image
-  title: string; // Text displayed below the icon
-  onClick: () => void; // Function to call when the card is clicked
-  size?: ModeCardSize; // Optional size prop, default will be handled in CSS or default prop
+  icon: string; 
+  title: string; 
+  onClick: () => void; 
+  size?: ModeCardSize; 
+  isActive: boolean; 
 }
 
 const ModeCard: React.FC<ModeCardProps> = ({
   icon,
   title,
   onClick,
-  size = 'medium' // Default size if not provided
+  size = 'medium', 
+  isActive, 
 }) => {
-  // Add a class based on the size prop for specific styling
-  const cardClassName = `mode-card mode-card--${size}`;
+  
+  const sizeClass = size ? `mode-card--${size}` : '';
   const iconClassName = `mode-icon mode-icon--${size}`;
   const titleClassName = `mode-title mode-title--${size}`;
 
+  
+  const activeClass = isActive ? 'mode-card--active' : '';
+  
+
   return (
     <div
-      className={cardClassName}
+      
+      className={`mode-card ${sizeClass} ${activeClass}`}
+      // --- END MODIFY ---
       onClick={onClick}
     >
       <div className={iconClassName}>

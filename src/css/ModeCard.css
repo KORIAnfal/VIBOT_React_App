@@ -12,6 +12,13 @@
   text-decoration: none; 
   color: inherit; 
   box-sizing: border-box; 
+  border: 2px solid transparent;
+}
+
+.mode-card--active {
+
+    border-color: var(--color-light-text); 
+
 }
 
 .mode-card:hover {

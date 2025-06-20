@@ -1,0 +1,182 @@
+@import url('./ManualControlMode.css');
+
+
+.multi-point-mission-page .manual-left-panel {
+     gap: 20px;
+     justify-content: flex-start;
+}
+
+.multi-point-mission-page .middle-section {
+     gap: 30px;
+}
+
+
+.multi-point-mission-page .current-mission-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 95%;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--color-light-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.multi-point-mission-page .current-mission-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.multi-point-mission-page .mission-progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.multi-point-mission-page .mission-progress-bar-fill {
+    height: 100%;
+    background-color: var(--color-accent-blue-1);
+    border-radius: 4px;
+    transition: width 0.5s ease-in-out;
+    width: var(--progress-percentage, 0%);
+}
+
+
+.multi-point-mission-page .manual-left-panel .manual-card.checklist-items {
+     width: 100%;
+     max-width: 300px;
+     margin: 0 auto;
+}
+
+
+.multi-point-mission-page .middle-section .manual-card.checklist-items {
+     width: 95%;
+     max-width: 700px;
+     margin-top: 10px;
+     margin-bottom: 0;
+     max-height: 250px;
+     overflow-y: auto;
+     &::-webkit-scrollbar { width: 8px; }
+     &::-webkit-scrollbar-track { background: var(--color-card-bg); border-radius: 10px; }
+     &::-webkit-scrollbar-thumb { background: var(--color-light-text); border-radius: 10px; }
+     &::-webkit-scrollbar-button { display: none; }
+}
+
+.multi-point-mission-page .checklist-items .checklist-item {
+     cursor: pointer;
+}
+
+
+.multi-point-mission-page .middle-section .button-container {
+     margin-top: 10px;
+     width: 95%;
+     max-width: 700px;
+     margin-bottom: 0;
+     gap: 15px;
+}
+
+.multi-point-mission-page .middle-section .cancel-button {
+    background-color: var(--color-card-bg);
+    color: var(--color-light-text);
+    border-radius: 10px;
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    min-width: 140px;
+    text-align: center;
+    flex: 1;
+    border: none;
+}
+.multi-point-mission-page .middle-section .cancel-button:hover {
+     opacity: 0.9;
+}
+.multi-point-mission-page .middle-section .cancel-button:active {
+     opacity: 0.8;
+}
+
+
+@media (max-width: 1024px) {
+     .multi-point-mission-page .manual-left-panel {
+         width: 100%;
+         max-width: 600px;
+         margin: 0 auto;
+         padding: 20px;
+         box-sizing: border-box;
+     }
+     .multi-point-mission-page .manual-left-panel .manual-card.checklist-items {
+         width: 100%;
+         max-width: 200px;
+         margin: 0 auto;
+     }
+
+    .multi-point-mission-page .middle-section .current-mission-status,
+    .multi-point-mission-page .middle-section .manual-card.checklist-items,
+    .multi-point-mission-page .middle-section .button-container {
+         width: 100%;
+         max-width: unset;
+    }
+
+     .multi-point-mission-page .middle-section .manual-card.checklist-items {
+         max-height: 200px;
+     }
+
+      .multi-point-mission-page .middle-section .cancel-button {
+          padding: 12px 18px;
+          font-size: 0.95rem;
+          min-width: unset;
+          width: auto;
+          flex: 1 1 auto;
+      }
+}
+
+@media (max-width: 600px) {
+     .multi-point-mission-page .manual-left-panel {
+         width: 100%;
+         max-width: unset;
+         padding: 15px;
+         gap: 15px;
+     }
+     .multi-point-mission-page .manual-left-panel .manual-card.checklist-items {
+          width: 100%;
+          max-width: 180px;
+          margin: 0 auto;
+     }
+
+
+    .multi-point-mission-page .middle-section .current-mission-status,
+    .multi-point-mission-page .middle-section .manual-card.checklist-items,
+    .multi-point-mission-page .middle-section .button-container {
+         width: 100%;
+         max-width: unset;
+    }
+
+      .multi-point-mission-page .middle-section {
+          padding: 15px;
+          box-sizing: border-box;
+      }
+
+     .multi-point-mission-page .middle-section .button-container {
+         flex-direction: column;
+         align-items: center;
+         gap: 10px;
+     }
+
+     .multi-point-mission-page .middle-section .button-container button {
+         width: 90%;
+         max-width: 300px;
+         min-width: unset;
+     }
+
+    .multi-point-mission-page .middle-section .manual-card.checklist-items {
+         max-height: 180px;
+     }
+}
